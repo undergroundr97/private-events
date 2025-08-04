@@ -1,0 +1,46 @@
+  [1m[35mSQL (0.6ms)[0m  [1m[35mSET search_path TO public /*application='PrivateEvents'*/[0m
+  [1m[35m (304.0ms)[0m  [1m[35mCREATE DATABASE "private_events_development" ENCODING = 'unicode' /*application='PrivateEvents'*/[0m
+  [1m[35m (10.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='PrivateEvents'*/[0m
+  [1m[35m (9.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='PrivateEvents'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5728513014153650910) /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-08-04 18:50:01.287162', '2025-08-04 18:50:01.287171') RETURNING "key" /*application='PrivateEvents'*/[0m
+Migrating to CreateUsers (20250804183323)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='PrivateEvents'*/[0m
+  [1m[35m (10.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250804183323') RETURNING "version" /*application='PrivateEvents'*/[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT /*application='PrivateEvents'*/[0m
+Migrating to CreateEvents (20250804183332)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='PrivateEvents'*/[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250804183332') RETURNING "version" /*application='PrivateEvents'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='PrivateEvents'*/[0m
+Migrating to CreateInvites (20250804183345)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='PrivateEvents'*/[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "invites" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250804183345') RETURNING "version" /*application='PrivateEvents'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT /*application='PrivateEvents'*/[0m
+Migrating to AddLocationToEvents (20250804184851)
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN /*application='PrivateEvents'*/[0m
+  [1m[35m (4.8ms)[0m  [1m[35mALTER TABLE "events" ADD "location" character varying /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250804184851') RETURNING "version" /*application='PrivateEvents'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='PrivateEvents'*/[0m
+Migrating to AddDateToEvents (20250804184928)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='PrivateEvents'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE "events" ADD "date" timestamp(6) /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250804184928') RETURNING "version" /*application='PrivateEvents'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='PrivateEvents'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(5728513014153650910) /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PrivateEvents'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5728513014153650910) /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='PrivateEvents'*/[0m
+Migrating to AddNameToUser (20250804190155)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='PrivateEvents'*/[0m
+  [1m[35m (5.6ms)[0m  [1m[35mALTER TABLE "users" ADD "name" character varying /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250804190155') RETURNING "version" /*application='PrivateEvents'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='PrivateEvents'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5728513014153650910) /*application='PrivateEvents'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PrivateEvents'*/[0m
