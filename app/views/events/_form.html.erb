@@ -10,8 +10,12 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
+  <%= form.label :title, "Event Title"%>
+  <%= form.text_field :title%>
+  <%= form.label :location, "Event Location"%>
+  <%= form.text_field :location%>
+  <%= form.date_field :date%>
+    <div>
     <%= form.submit %>
   </div>
 <% end %>

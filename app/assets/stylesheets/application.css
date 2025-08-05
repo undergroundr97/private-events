@@ -8,3 +8,13 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ .events {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+    justify-content: center;
+    text-align: center;
+ }
