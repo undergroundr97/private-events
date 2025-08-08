@@ -16,3 +16,8 @@
 <%= link_to "New event", new_event_path %>
 
 <%= button_to "Log off", destroy_user_session_path, method: :delete%>
+<% if current_user%>
+<%= button_to "Show this user", user_path(current_user.id), method: :get%>
+<%end%>
+
+<%= button_to "login", new_user_session_path%>

@@ -1,5 +1,9 @@
 class InvitesController < ApplicationController
-  before_action :set_invite, only: %i[ show edit update destroy ]
+  before_action :set_invite, only: %i[show edit update destroy]
+  before_action :init
+  def init
+    self.status = 'pending'
+  end
 
   # GET /invites or /invites.json
   def index
@@ -25,7 +29,7 @@ class InvitesController < ApplicationController
 
     respond_to do |format|
       if @invite.save
-        format.html { redirect_to @invite, notice: "Invite was successfully created." }
+        format.html { redirect_to @invite, notice: 'Invite was successfully created.' }
         format.json { render :show, status: :created, location: @invite }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +42,7 @@ class InvitesController < ApplicationController
   def update
     respond_to do |format|
       if @invite.update(invite_params)
-        format.html { redirect_to @invite, notice: "Invite was successfully updated." }
+        format.html { redirect_to user_path(current_user.id), notice: 'Invite was successfully updated.' }
         format.json { render :show, status: :ok, location: @invite }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +56,20 @@ class InvitesController < ApplicationController
     @invite.destroy!
 
     respond_to do |format|
-      format.html { redirect_to invites_path, status: :see_other, notice: "Invite was successfully destroyed." }
+      format.html { redirect_to invites_path, status: :see_other, notice: 'Invite was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_invite
-      @invite = Invite.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def invite_params
-      params.fetch(:invite, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_invite
+    @invite = Invite.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def invite_params
+    params.expect(invite: %i[status])
+  end
 end

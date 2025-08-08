@@ -18,3 +18,29 @@
     justify-content: center;
     text-align: center;
  }
+
+ .all-events{
+   display: flex;
+ }
+
+ .invites {
+   display: flex;
+   flex-direction: column;
+ }
+
+.flash{
+  background-color: green;
+  color: white;
+  padding: 20px;
+  width: auto;
+  position: absolute;
+  border-radius: 20px;
+  bottom: 10px;
+  right: 1px;
+  transition: opacity 0.5s ease-in-out;
+  font-size: 15px;
+  font-weight: bold;
+ }
+ .flash .show {
+  opacity: 1;
+ }

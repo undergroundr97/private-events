@@ -1,15 +1,35 @@
-<p style="color: green"><%= notice %></p>
+
+<div class="flash show"><%= notice %></div>
 
 <%= render @user %>
 <h2>Your events:</h2>
-<% b = Event.all.to_a%>
-<% b.each do |event|%>
-<div class="events">
-  <%= event.title%>
-  <%= event.location%>
+<div class="all-events">
+  <% b = Event.all.to_a%>
+  <% b.each do |event|%>
+  <div class="events">
+    <%= event.title%>
+    <%= event.location%>
+   <%= %>
+  </div>
+  <%end%>
 </div>
-<%end%>
 <div>
+
+  <div class="invites">
+    <% events = Event.all.to_a%>
+    <% events.each do |event|%>
+    <% next if current_user.id == event.creator_id%>
+    <% your_invite = Invite.find_or_create_by(user: current_user, event: event)%>
+    <div class="your-invite">
+      <h2>Pending Invites:</h2>
+      <%= your_invite.event.title%>
+      <%= your_invite.status%>
+      <%= button_to "Accept this Invite", invite_path(your_invite.id), method: :patch, 
+      params: {invite: {status: "accepted"}}%>
+      <%= button_to "Decline this Invite", invite_path(your_invite.id), method: :patch, params: {invite:{status:"declined"}}%>
+    </div>
+    <%end%>
+ </div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
   <%= button_to "Log off", destroy_user_session_path, method: :delete%>
