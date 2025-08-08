@@ -2,36 +2,58 @@
 <div class="flash show"><%= notice %></div>
 
 <%= render @user %>
-<h2>Your events:</h2>
-<div class="all-events">
-  <% b = Event.all.to_a%>
-  <% b.each do |event|%>
-  <div class="events">
-    <%= event.title%>
-    <%= event.location%>
-   <%= %>
-  </div>
-  <%end%>
-</div>
-<div>
-
-  <div class="invites">
-    <% events = Event.all.to_a%>
-    <% events.each do |event|%>
-    <% next if current_user.id == event.creator_id%>
-    <% your_invite = Invite.find_or_create_by(user: current_user, event: event)%>
-    <div class="your-invite">
-      <h2>Pending Invites:</h2>
-      <%= your_invite.event.title%>
-      <%= your_invite.status%>
-      <%= button_to "Accept this Invite", invite_path(your_invite.id), method: :patch, 
-      params: {invite: {status: "accepted"}}%>
-      <%= button_to "Decline this Invite", invite_path(your_invite.id), method: :patch, params: {invite:{status:"declined"}}%>
+  <h2>Your events:</h2>
+  <div class="all-events">
+    <% b = Event.all.to_a%>
+    <% b.each do |event|%>
+    <div class="events">
+      <%= event.title%>
+      <%= event.location%>
+     <%= %>
     </div>
     <%end%>
- </div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
+  </div>
+  <div>
+  
+    <div class="display-events">
+      <div class="invites">
+        <h2>Pending Invites:</h2>
+        <% events = Event.all.order(:created_at).to_a%>
+        <% events.each do |event|%>
+        <% next if current_user.id == event.creator_id%>
+        <% your_invite = Invite.find_or_create_by(user: current_user, event: event)%>
+        <%next if your_invite.status == "accepted"%>
+        <div class="your-invite">
+          <%= your_invite.event.title%>
+          <%= your_invite.status%>
+          <%= button_to "Accept this Invite", invite_path(your_invite.id), method: :patch,
+          params: {invite: {status: "accepted"}}%>
+          <br>
+        </div>
+        <%end%>
+      </div>
+      <div class="accepted-invites">
+        <h2>Accepted Invites:</h2>
+         <% events = Event.all.order(:created_at).to_a%>
+        <% events.each do |event|%>
+        <% next if current_user.id == event.creator_id%>
+        <% your_invite = Invite.find_or_create_by(user: current_user, event: event)%>
+        <%next if your_invite.status != "accepted"%>
+        <div class="your-invite">
+          <%if your_invite.status == "accepted"%>
+          <%= your_invite.event.title%>
+          <%= your_invite.status%>
+          <%= button_to "Decline this Invite", invite_path(your_invite.id), method:
+           :patch, params: {invite:{status:"declined"}}%>
+           <%end%>
+           <br>
+        </div>
+        <%end%>
+    </div>
+
+</div>
+
+<%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
   <%= button_to "Log off", destroy_user_session_path, method: :delete%>
   <%= button_to "Destroy this user", @user, method: :delete %>
-</div>
