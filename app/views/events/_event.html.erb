@@ -3,5 +3,12 @@
     <%= event.location%>
     <%= event.creator.name%>
 
-    <%= event.date.strftime("%A, %B %d, %Y")%>
+    <%= event.date.strftime("%A, %B %d, %Y") if !event.date.nil?%>
+    <h2>Attendees:</h2>
+    <% a = event.attendees.all.to_a%>
+    <% a.each do |b|%>
+     <% if b.invites.any? {|invite| invite.status == "accepted"}%>
+        <div class="b-name"><%= b.name%></div>
+    <%end%>
+    <%end%>
 </div>

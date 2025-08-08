@@ -42,6 +42,12 @@ class InvitesController < ApplicationController
   def update
     respond_to do |format|
       if @invite.update(invite_params)
+        if @invite.status == 'declined'
+          event = @invite.event
+          user = @invite.user
+          event.attendees.delete(user)
+          @invite.status = 2
+        end
         format.html { redirect_to user_path(current_user.id), notice: 'Invite was successfully updated.' }
         format.json { render :show, status: :ok, location: @invite }
       else
