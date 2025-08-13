@@ -1,0 +1,198 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+@font-face {
+  font-family: 'flow';
+  src: url('font/');
+}
+
+html {
+  height: 100%;
+}
+
+ body {
+  display: flex;
+  flex-direction: column;
+  background-color: #3e4a4d;
+  /* color: white; */
+  color: white;
+  height: 100vh;
+
+ }
+ * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+ }
+a, a:visited, a:hover, a:active {
+   color: inherit;
+  text-decoration: none;
+  background-color: aqua;
+  border-radius: 20px;
+  padding: 2px;
+  width: fit-content;
+ }
+/* HEADER */
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid white;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  min-height: 100px;
+  background-color: #3e4a4d;
+  color: white;
+}
+
+
+/* FOOTER */
+.footer {
+  z-index: 100;
+  width: 100%;
+  height: 50px;
+  color: white;
+  border-top: 1px solid white;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: space-around;
+   gap: 20px;
+}
+
+.footer img {
+  filter: invert(100%);
+}
+
+
+.right-side-footer   {
+   display: flex;
+   align-items: center;
+   justify-self: center;
+   gap: 5px;
+}
+
+
+/* CONTAINER */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.middle-container {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 300px 2fr;
+  grid-row: auto;
+  /* max-height: 100vh; */
+
+}
+.side {
+  grid-column: 1;
+  grid-row: 1/10;
+  border-right: 1px solid white;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-top: 5px solid #3e4a4d;
+  z-index: 100;
+
+}
+.renderable{
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+/* EVENT CARD DISPLAY */
+#events {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  /* overflow-y: scroll; */
+}
+.event-card{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 2px solid white;
+  border-radius: 20px;
+  height: 100px;
+}
+
+ .users-to-invite{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  border: 10px solid black;
+ }
+.invitation {
+  display: flex;
+
+  align-items: center;
+  gap: 10px;
+}
+.attendees {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+ .events {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+    justify-content: center;
+    text-align: center;
+ }
+
+ .all-events{
+   display: flex;
+ }
+
+ .invites {
+   display: flex;
+   flex-direction: column;
+ }
+
+.flash{
+  background-color: green;
+  color: white;
+  padding: 20px;
+  width: auto;
+  position: absolute;
+  border-radius: 20px;
+  bottom: 10px;
+  right: 1px;
+  transition: opacity 0.5s ease-in-out;
+  font-size: 15px;
+  font-weight: bold;
+ }
+
+ 
+ .header a {
+  font-size: 20px;
+ }
+ .flash .show {
+  opacity: 1;
+ }
+
+.display-events {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 20px;
+  text-align: center;
+}

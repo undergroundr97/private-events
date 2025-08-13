@@ -1,0 +1,62 @@
+
+<div class="flash show"><%= notice %></div>
+
+<%= render @user %>
+  <h2>Your events:</h2>
+  <div class="all-events">
+    <% b = Event.all.to_a%>
+    <% b.each do |event|%>
+    <%next if event.creator_id != current_user.id%>
+    <%= link_to event_path(event.id) do %>
+    <div class="events">
+      <%= event.title%>
+      <%= event.location%>
+    </div>
+    <%end%>
+    <%end%>
+  </div>
+  <div>
+  
+    <div class="display-events">
+      <div class="invites">
+
+        <h2>Pending:</h2>
+          <% user = User.find(current_user.id)%>
+          <% invite = user.invites.reload.to_a.each do |invite|%>
+          <% next if current_user.id == invite.event.creator_id%>
+          <% next if invite.nil? || invite.status == "accepted" || invite.status == "declined" %>
+            <%= invite.event.title %>
+            <%= invite.event.location%>
+            <%= invite.status%>
+            <%= button_to "Accept this Invite", invite_path(invite.id), method: :patch,
+          params: {invite: {status: "accepted"}}%>
+          <%end%>
+          
+
+        
+     
+      </div>
+      <div class="accepted-invites">
+        <h2>Accepted Invites:</h2>
+         <% events = Event.all.order(:created_at).to_a%>
+        <% events.each do |event|%>
+        <% next if current_user.id == event.creator_id%>
+        <% your_invite = Invite.find_by(user: current_user, event: event)%>
+        <%next if your_invite.nil?%>
+        <div class="your-invite">
+          <%if your_invite.status == "accepted"%>
+          <%= your_invite.event.title%>
+          <%= your_invite.status%>
+          <%= button_to "Decline this Invite", invite_path(your_invite.id), method:
+           :patch, params: {invite:{status:"declined"}}%>
+           <%end%>
+           <br>
+        </div>
+        <%end%>
+    </div>
+
+</div>
+
+  <%= link_to "Back to Events", events_path%>
+  <%= button_to "Log off", destroy_user_session_path, method: :delete%>
+  <%= button_to "Destroy this user", @user, method: :delete %>
