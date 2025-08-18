@@ -1,29 +1,31 @@
-<p style="color: green"><%= notice %></p>
+
 
 <% content_for :title, "Events" %>
 
-<h1>On going Events:</h1>
+<div class="events-title">
+
+</div>
 
 <div id="events">
-  <% @events.each do |event| %>
+  <% @events.sort.each do |event| %>
+    <% if event.privacy? %>
     <div class="event-card">
-      <%= event.title.upcase %>
-      <%if event.privacy != true || user_signed_in? && current_user.id == event.creator_id%>
-        <br>
-        <%= link_to "Show this Event", event_path(event.id)%>
-        <%else%>
-        <p>This is a private event</p>
-        <%end%>
-      <br>
+      <%= event.title.upcase%>
+      <%= lock_image_for(event.privacy)%>
+      <p>This is a private event!</p>
     </div>
-  <% end %>
-</div>
-<br>
-<%= link_to "New event", new_event_path %>
+    <% else %>
+    <%= link_to event do %>
+      <div class="event-card public">
+       
 
-<%= button_to "Log off", destroy_user_session_path, method: :delete if user_signed_in?%>
-<% if current_user%>
-<%= button_to "Show this user", user_path(current_user.id), method: :get%>
+        <%= event.title.upcase%>
+        <%= lock_image_for(event.privacy)%>
+      </div>
+    <%end%>
+  <%end%>
+
 <%end%>
+</div>
 
-<%= button_to "login", new_user_session_path%>
+
