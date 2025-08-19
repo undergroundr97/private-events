@@ -8,23 +8,31 @@
 
 <div id="events">
   <% @events.sort.each do |event| %>
-    <% if event.privacy? %>
+    <% if event.privacy %>
     <div class="event-card">
-      <%= event.title.upcase%>
-      <%= lock_image_for(event.privacy)%>
-      <p>This is a private event!</p>
+      <div class="event-title"><%= event.title.upcase%>  <%= lock_image_for(event.privacy)%></div>
+        <div class="event-date">
+          <%= event.date.strftime("Event date: %d/%m/%Y") if !event.date.nil?%>
+        </div>
+          <div class="event-place"> 
+             <p>Location: <%=event.location%></p> 
+          </div>
+      
     </div>
     <% else %>
-    <%= link_to event do %>
+      <%= link_to event do %>
       <div class="event-card public">
-       
-
-        <%= event.title.upcase%>
-        <%= lock_image_for(event.privacy)%>
+        <div class="event-title"><%= event.title.upcase%>  <%= lock_image_for(event.privacy)%></div>
+        <div class="event-date">
+          <%= event.date.strftime("Event date: %d/%m/%Y")if !event.date.nil?%>
+        </div>
+          <div class="event-place"> 
+             <p>Location: <%=event.location%></p> 
+          </div>
       </div>
-    <%end%>
+      <%end%>
   <%end%>
-
+  <br>
 <%end%>
 </div>
 

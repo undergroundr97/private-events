@@ -18,7 +18,7 @@
         <%end%>
     </div>
           <br>
-
+    <%if  !current_user.nil?    && current_user.id == event.creator_id %>
     <h2>Invitation:</h2>
     <div class="users-to-invite">
         <%users = User.all.to_a%>
@@ -32,5 +32,12 @@
         <%= button_to "Invite this User", invites_path, method: :post, params: {invite: {user: user, event_id: event.id}}%>
         </div>
         <%end%>
+        <%end%>
     </div>
+    <div>
+  <%= link_to "Edit this event", edit_event_path(@event) %> |
+  <%= link_to "Back to events", events_path %>
+
+  <%= button_to "Destroy this event", @event, method: :delete %>
+</div>
 </div>

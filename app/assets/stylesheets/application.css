@@ -30,7 +30,7 @@ html {
  body {
   display: flex;
   flex-direction: column;
-  background-color: #3e4a4d;
+  background-color: #2A3D45;
   /* color: white; */
   color: white;
   height: 100vh;
@@ -45,8 +45,8 @@ a, a:visited, a:hover, a:active {
    color: white;
   text-decoration: none;
   /* background-color: aqua;, */
-  border-radius: 20px;
-  padding: 2px;
+  /* border-radius: 20px; */
+  /* padding: 2px; */
   /* width: fit-content; */
  }
 /* HEADER */
@@ -55,12 +55,12 @@ a, a:visited, a:hover, a:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid white;
+
   flex-direction: column;
   width: 100%;
   height: 100px;
   min-height: 100px;
-  background-color: #3e4a4d;
+  background-color: 2A3D45;
   color: white;
 }
 .header-title {
@@ -68,23 +68,8 @@ a, a:visited, a:hover, a:active {
   align-items: center;
   align-content: center;
 }
-.ajuste {
-  content: "";
-  position: absolute;
-  /* top: 20px; */
-  /* bottom: 20px; */
-  /* right: 300px; */
-  align-self: flex-start;
-  /* margin-top: 20px; */
-  /* border-bottom: 5px solid #3e4a4d; */
-  z-index:2;
-  width: 300px;
-  /* height: 200px; */
-  height: 10px;
-  top: 90px;
-  background-color: #3e4a4d;
-  user-select: none;
-}
+
+
 
 
 /* FOOTER */
@@ -93,12 +78,32 @@ a, a:visited, a:hover, a:active {
   width: 100%;
   height: 50px;
   color: white;
-  border-top: 1px solid white;
+
    display: flex;
+   /* flex-direction: column; */
+   justify-items: space-around;
    justify-content: center;
    align-items: center;
    align-content: space-around;
    gap: 20px;
+}
+.ajuste-footer-right{
+  content: "";
+  position: absolute;
+  /* top: 20px; */
+  /* bottom: 20px; */
+  /* right: 300px; */
+  /* align-self: flex-start; */
+  /* margin-top: 20px; */
+  /* border-bottom: 5px solid #3e4a4d; */
+  z-index:2;
+  width: 300px;
+  /* height: 200px; */
+  height: 2px;
+  bottom: 48px;
+  right: 0px;
+  background-color: #3e4a4d;
+  user-select: none;
 }
 .ajuste-footer {
   content: "";
@@ -140,7 +145,7 @@ a, a:visited, a:hover, a:active {
 .middle-container {
   flex-grow: 1;
   display: grid;
-  grid-template-columns: 300px 2fr;
+  grid-template-columns: 300px 2fr 300px;
   grid-row: auto;
   /* max-height: 100vh; */
 
@@ -148,13 +153,51 @@ a, a:visited, a:hover, a:active {
 .side {
   grid-column: 1;
   grid-row: 1/10;
-  border-radius: -20px;
-  border-right: 1px solid white;
+
   /* border-radius: 10px; */
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   /* border-top: 15px solid #3e4a4d; */
   z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  justify-items: space-between;
+  flex-grow: 1;
+}
+.log-in-btn {
+  padding: 10px;
+  font-size: 1.5rem;
+  align-self: flex-end;
+  background-color: inherit;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.login-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-icon {
+  filter: invert(100%);
+  width: 30px;
+  justify-self: center;
+  align-content: center;
+}
+.login-btn-img{
+  background-color: inherit;
+  border: none;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
 
+.side-right { 
+ 
+  grid-column: 3;
+  grid-row: 1/10;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 .renderable{
   overflow: hidden;
@@ -178,7 +221,7 @@ a, a:visited, a:hover, a:active {
   display: grid;
   grid-auto-rows: 100px;
   overflow-y: scroll;
-  gap: 20px;
+  /* gap: 20px; */
   padding: 30px;
   
   /* padding-right: 17px; */
@@ -187,28 +230,40 @@ a, a:visited, a:hover, a:active {
 }
 
 
-.event-card{
+.event-card, .event-card.public{
   padding: 10px;
   display: flex;
   flex-direction: column;
   width: 100%;
   border: 2px solid white;
-  border-radius: 20px;
-  height: 100px;
+  border-radius: 50px;
+  height: 130px;
+  background-color: ;
+  text-align: center;
+  gap: 5px;
 }
-
+.event-title {
+  font-size: 25px;
+  text-align: center;
+}
 .privacy-icon {
-  height: 30px;
+  height: 25px;
+  place-self: flex-end;
+  position: relative;
+  
+}
+.event-card {
+  background-color: rgb(160, 140, 200);
 }
 .event-card.public {
-  background-color: rgb(61, 161, 41);
+  background-color: rgb(100, 180, 100);
   padding: 10px;
   display: flex;
   flex-direction: column;
   width: 100% !important;
   border: 2px solid white;
-  border-radius: 20px;
-  height: 100px; 
+  border-radius: 50px;
+  height: 130px; 
 }
 
  .users-to-invite{
@@ -230,6 +285,7 @@ a, a:visited, a:hover, a:active {
 }
  .events {
     display: flex;
+    /* gap: 10px; */
     flex-direction: column;
     border: 1px solid black;
     height: 100px;
