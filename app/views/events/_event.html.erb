@@ -1,4 +1,4 @@
-<div id="<%= dom_id event %>">
+<div id="event-display-card">
     <%= event.title%>
     <%= event.location%>
     <%= event.creator.name%>
@@ -28,8 +28,10 @@
         <%next if  user.invites.find_by(event: event.id).status != "declined" if !user.invites.find_by(event: event.id).nil? %>
         
         <div class="invitation">
-        <p>Invite <%= user.name %></p>
-        <%= button_to "Invite this User", invites_path, method: :post, params: {invite: {user: user, event_id: event.id}}%>
+        <div class="user-name">
+            <p><%= user.name %></p>
+        </div>
+        <%= button_to "Invite", invites_path, method: :post, params: {invite: {user: user, event_id: event.id}}, class: "invite-btn"%>
         </div>
         <%end%>
         <%end%>
