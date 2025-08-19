@@ -161,9 +161,10 @@ a, a:visited, a:hover, a:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   justify-items: space-between;
   flex-grow: 1;
+  padding: 10px;
 }
 .log-in-btn {
   padding: 10px;
@@ -184,6 +185,9 @@ a, a:visited, a:hover, a:active {
   width: 30px;
   justify-self: center;
   align-content: center;
+}
+.log-out-btn {
+  width: 200px;
 }
 .login-btn-img{
   background-color: inherit;
@@ -321,7 +325,7 @@ a, a:visited, a:hover, a:active {
  .header a {
   font-size: 20px;
  }
- .flash .show {
+ .flash.show {
   opacity: 1;
  }
 

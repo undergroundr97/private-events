@@ -23,8 +23,8 @@
   </head>
 
   <body>
+    <%= render "layouts/header"%>
     <div class="container">
-      <%= render "layouts/header"%>
       <div class="middle-container">
         <%= render "layouts/sidebar"%>
         <%= render "layouts/sideright"%>
@@ -32,7 +32,7 @@
           <%= yield %>
         </div>
       </div>
-      <%= render "layouts/footer"%>
     </div>
+     <%= render "layouts/footer"%>
   </body>
 </html>

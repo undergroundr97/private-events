@@ -2,12 +2,18 @@
     <%if !user_signed_in?%>
     <%= content_tag :div, class:'login-div' do %>
     <%= button_to("Log In", new_user_session_path, class: "log-in-btn")%>
-     <%=button_to image_tag("login.svg", class:'login-icon'), new_user_session_path, class: "login-btn-img"%>
+    <%=button_to image_tag("login.svg", class:'login-icon'), new_user_session_path, class: "login-btn-img"%>
+     
      <%end%>
      <%else %>
+     <%= content_tag :div, class: 'user-info' do %>
+        <h2>Welcome <%= current_user.name%></h2>
+        <h2>Invites pending: <%= current_user.invites.where.not(status: "pending").count%></h2>
+        <%= button_to "my profile", user_path(current_user.id), method: :get%>
+     <%end%>
      <%= content_tag :div, clasS: 'login-div' do %>
      <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "log-in-btn"%>
-     <%= button_to image_tag("logout.svg", class: "login-btn-img"), destroy_user_session_path, method: :delete, class: "login-btn-img"%>
+     <%=button_to image_tag("logout.svg", class:"login-icon"), destroy_user_session_path, method: :delete, class: "login-btn-img"%>
      <%end%>
      <%end%>
 </div>
