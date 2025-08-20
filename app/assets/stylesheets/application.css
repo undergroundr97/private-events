@@ -162,14 +162,16 @@ a, a:visited, a:hover, a:active {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  justify-items: space-between;
+  
   flex-grow: 1;
   padding: 10px;
 }
 .log-in-btn {
   padding: 10px;
   font-size: 1.5rem;
-  align-self: flex-end;
+  /* align-self: flex-end; */
+  /* justify-content: ; */
+  place-self: flex-end;
   background-color: inherit;
   border: none;
   color: white;
@@ -178,7 +180,8 @@ a, a:visited, a:hover, a:active {
 .login-div{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  /* place-self: flex-end; */
 }
 .user-info {
   display: flex;
@@ -252,9 +255,29 @@ a, a:visited, a:hover, a:active {
   text-align: center;
   gap: 5px;
 }
+.event-location, .event-author, .event-date-inside, .event-title-card {
+  display: flex;
+  gap: 5px;
+  font-size: 25px;
+}
+.event-title-card {
+  font-weight: bold;
+  font-size: 50px;
+}
 .event-title {
   font-size: 25px;
   text-align: center;
+}
+.attendees {
+  display: flex;
+  width: 50%;
+}
+.attendees-info {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 20%;
 }
 .privacy-icon {
   height: 25px;
@@ -279,7 +302,7 @@ a, a:visited, a:hover, a:active {
   display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: space-between;
+justify-content: space-evenly;
 flex-grow: 1;
 }
 .invitation {
@@ -344,17 +367,32 @@ flex-grow: 1;
 
 
 
- .users-to-invite{
+ .users-to-invite, .attendees{
   padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   display: flex;
   flex-direction: column;
   width: 300px;
-  border: 1px solid white;
-  height: 300px;
+  /* border: 1px solid white; */
+  height: 250px;
   overflow-y: scroll;
   border-radius: 20px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  border: 1px solid black;
+ }
+ .user-name{
+  display: flex;
+  gap: 8px;
+ }
+ .invitation-part {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
+ .user-icon {
+  filter: invert(100%);
+  width: 20px;
  }
 .invitation {
   display: flex;
@@ -362,10 +400,22 @@ flex-grow: 1;
   align-items: center;
   gap: 10px;
 }
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  /* gap: 10px; */
+}
 .attendees {
+  
+  text-align: center;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
+  align-items: center;
+  gap: 5px;
 }
  .events {
     display: flex;

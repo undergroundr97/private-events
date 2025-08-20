@@ -1,45 +1,52 @@
 <div id="event-display-card">
-    <%= event.title%>
-    <%= event.location%>
-    <%= event.creator.name%>
-
-    <%= event.date.strftime("%A, %B %d, %Y") if !event.date.nil?%>
+    <div class="event-info">
+        <div class="event-title-card"><%= event.title%></div>
+        <div class="event-location">
+            <p>Event will be hosted at:</p><%= event.location%></div>
+        <div class="event-date-inside">
+            <p>Event will be on:</p><%= event.date.strftime("%A, %B %d, %Y") if !event.date.nil?%></div>
+            <div class="event-author">
+            <p>Created by:</p>
+            <%= event.creator.name%></div>
+        <h2>This event is currently: <%= event.privacy? ? "Private" : "Public"%> </h2>
+    </div>
     <br>
-    <%= link_to "Edit this event", edit_event_path if user_signed_in? && current_user.id == event.creator_id%>
+    
 
-    <h2>This event is currently: <%= event.privacy? ? "Private" : "Public"%> </h2>
-    <h2>Attendees:</h2>
-    <div class="attendees">
-        <% a = event.attendees.all.to_a%>
-        <% a.each do |b|%>
-         <% if b.invites.any? {|invite| invite.status == "accepted"}%>
-            <div class="b-name"><%= b.name%></div>
-        <%end%>
-        <%end%>
+    <div class="attendees-info">
+        <h2>Attendees:</h2>
+        <div class="attendees">
+            <% a = event.attendees.all.to_a%>
+            <% a.each do |b|%>
+             <% if b.invites.any? {|invite| invite.status == "accepted"}%>
+                <div class="b-name"><%= b.name%></div>
+            <%end%>
+            <%end%>
+        </div>
     </div>
           <br>
     <%if  !current_user.nil?    && current_user.id == event.creator_id %>
-    <h2>Invitation:</h2>
-    <div class="users-to-invite">
-        <%users = User.all.to_a%>
-        <%users.each do |user|%>
-        <%next if current_user.nil?%>
-        <%next if user.id == current_user.id%>
-        <%next if  user.invites.find_by(event: event.id).status != "declined" if !user.invites.find_by(event: event.id).nil? %>
+    <div class="invitation-part">
+        <h2>Users to Invite:</h2>
+        <div class="users-to-invite">
+            <%users = User.all.to_a%>
+            <%users.each do |user|%>
+            <%next if current_user.nil?%>
+            <%next if user.id == current_user.id%>
+            <%next if  user.invites.find_by(event: event.id).status != "declined" if !user.invites.find_by(event: event.id).nil? %>
         
-        <div class="invitation">
-        <div class="user-name">
-            <p><%= user.name %></p>
+            <div class="invitation">
+            <div class="user-name">
+                <%= image_tag("face-man-profile.svg",  class: 'user-icon')%>
+                <p><%= user.name %></p>
+            </div>
+            <%= button_to "Invite", invites_path, method: :post, params: {invite: {user: user, event_id: event.id}}, class: "invite-btn"%>
+            </div>
+            <%end%>
+            <%end%>
         </div>
-        <%= button_to "Invite", invites_path, method: :post, params: {invite: {user: user, event_id: event.id}}, class: "invite-btn"%>
-        </div>
-        <%end%>
-        <%end%>
     </div>
     <div>
-  <%= link_to "Edit this event", edit_event_path(@event) %> |
-  <%= link_to "Back to events", events_path %>
-
-  <%= button_to "Destroy this event", @event, method: :delete %>
+  
 </div>
 </div>

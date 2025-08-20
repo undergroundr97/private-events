@@ -1,5 +1,6 @@
 <div class="side">
     <%if !user_signed_in?%>
+    <%=content_tag :div%>
     <%= content_tag :div, class:'login-div' do %>
     <%= button_to("Log In", new_user_session_path, class: "log-in-btn")%>
     <%=button_to image_tag("login.svg", class:'login-icon'), new_user_session_path, class: "login-btn-img"%>
