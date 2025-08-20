@@ -145,7 +145,7 @@ a, a:visited, a:hover, a:active {
 .middle-container {
   flex-grow: 1;
   display: grid;
-  grid-template-columns: 300px 2fr 300px;
+  grid-template-columns: 0.7fr 2fr 0.7fr;
   grid-row: auto;
   /* max-height: 100vh; */
 
@@ -187,7 +187,28 @@ a, a:visited, a:hover, a:active {
   display: flex;
   flex-direction: column;
   height: 30%;
+  align-items: center;
+  justify-content: space-around;
 
+}
+.current-pending{
+  display: flex;
+  text-align: center;
+}
+.to-profile-btn:hover{
+  background-color: #2c5777;
+}
+.to-profile-btn {
+  display: flex;
+  /* flex-direction: column; */
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #374d55;
+  color: white;
+  font-size: 20px;
+  border: 1px solid black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 .login-icon {
   filter: invert(100%);
@@ -207,10 +228,50 @@ a, a:visited, a:hover, a:active {
 }
 
 .side-right { 
- 
+  gap: 50px;
+  display: flex;
+  flex-direction: column;
   grid-column: 3;
   grid-row: 1/10;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+
+.right-side-stuff{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 30%;
+}
+
+.right-side-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 50%;
+}
+.right-side-event-card{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.event-name-disp{
+  display: flex;
+  border: 1px solid white;
+  min-width: 200px;
+
+  height: 50px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 20px;
+
 }
 .renderable{
   overflow: hidden;
@@ -254,6 +315,7 @@ a, a:visited, a:hover, a:active {
   background-color: ;
   text-align: center;
   gap: 5px;
+  overflow: hidden;
 }
 .event-location, .event-author, .event-date-inside, .event-title-card {
   display: flex;
@@ -273,6 +335,7 @@ a, a:visited, a:hover, a:active {
   width: 50%;
 }
 .attendees-info {
+  gap: 10px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -299,6 +362,9 @@ a, a:visited, a:hover, a:active {
   height: 130px; 
 }
 #event-display-card{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
   display: flex;
 flex-direction: column;
 align-items: center;
@@ -306,6 +372,7 @@ justify-content: space-evenly;
 flex-grow: 1;
 }
 .invitation {
+  gap: 10px;
   display: flex;
   padding: 5px;
   /* flex-direction: column; */
@@ -386,6 +453,7 @@ flex-grow: 1;
   gap: 8px;
  }
  .invitation-part {
+  gap: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;

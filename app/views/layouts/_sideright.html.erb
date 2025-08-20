@@ -1,3 +1,18 @@
 <div class="side-right">
+    <%= content_tag :div, class: "right-side-stuff" do %>
+    <%= button_to "All Events", events_path, method: :get, class: "to-profile-btn"%>
+    <%end%>
 
+    <%= content_tag :div, class:"right-side-bottom" do %>
+    <h2>Recent Public Events:</h2>
+        <%event = Event.all.reverse.take(4)%>
+        <%= content_tag :div, class:"right-side-event-card" do %>
+            <% event.each do |eve|%>
+            <%=link_to eve do%>
+            <%next if eve.privacy?%>
+            <%=content_tag :div, "#{eve.title}", class:"event-name-disp"%>
+            <%end%>
+            <%end%>
+        <%end%>
+    <%end%>
 </div>
