@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :invites
   resources :events
   resources :users
-
-  root 'events#index'
+  devise_scope :user do
+    root to: 'devise/sessions#new'
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

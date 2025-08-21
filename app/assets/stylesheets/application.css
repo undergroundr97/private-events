@@ -283,6 +283,7 @@ a, a:visited, a:hover, a:active {
   grid-column: 2/3;
   grid-row: 1/10;
   /* text-align: center; */
+  justify-content: center;
 }
 .events-title {
   text-align: center;
@@ -532,4 +533,32 @@ flex-grow: 1;
   /* flex-direction: column; */
   gap: 20px;
   text-align: center;
+}
+
+
+.log-in-devise {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  /* justify-self: ; */
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 8px;
+  width: 300px;
+  /* place-self: center; */
+  justify-self: center;
+  align-self: center;
+  overflow: hidden;
+  /* flex-grow: 1; */
+}
+.login-form {
+  border: 2px solid white;
+}
+
+.field input[type=text] {
+  padding: 10px;
+  border-radius: 8px;
+
 }
