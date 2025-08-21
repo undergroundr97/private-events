@@ -34,6 +34,7 @@ html {
   /* color: white; */
   color: white;
   height: 100vh;
+  scrollbar-color: #1b272c #466572;
 
  }
  * {
@@ -445,9 +446,10 @@ flex-grow: 1;
   height: 250px;
   overflow-y: scroll;
   border-radius: 20px;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  /* -ms-overflow-style: none;
+  scrollbar-width: none; */
   border: 1px solid black;
+  scrollbar-width:  thin;
  }
  .user-name{
   display: flex;
