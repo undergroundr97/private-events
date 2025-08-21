@@ -5,7 +5,7 @@
 
     <%= content_tag :div, class:"right-side-bottom" do %>
     <h2>Recent Public Events:</h2>
-        <%event = Event.all.reverse.take(4)%>
+        <%event = Event.where(privacy: false).reverse.take(4)%>
         <%= content_tag :div, class:"right-side-event-card" do %>
             <% event.each do |eve|%>
             <%=link_to eve do%>
