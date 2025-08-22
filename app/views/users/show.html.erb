@@ -1,21 +1,22 @@
 
 
 
-<%= render @user %>
-  <h2>Your events:</h2>
-  <div class="all-events">
-    <% b = Event.all.to_a%>
-    <% b.each do |event|%>
-    <%next if event.creator_id != current_user.id%>
-    <%= link_to event_path(event.id) do %>
-    <div class="events">
-      <%= event.title%>
-      <%= event.location%>
+<div class="events-show-up">
+  <h2>Hosted Events:</h2>
+    <div class="all-events">
+      <% b = Event.all.to_a%>
+      <% b.each do |event|%>
+      <%next if event.creator_id != current_user.id%>
+      <%= link_to event_path(event.id) do %>
+      <div class="events">
+        <%= event.title%>
+        <%= event.location%>
+      </div>
+      <%end%>
+      <%end%>
     </div>
-    <%end%>
-    <%end%>
-  </div>
   <div>
+</div>
   
     <div class="display-events">
       <div class="invites">

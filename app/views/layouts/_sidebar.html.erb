@@ -14,6 +14,9 @@
         </div>
         <%= button_to "PROFILE", user_path(current_user.id), method: :get, class:"to-profile-btn"%>
      <%end%>
+     <%= content_tag :div, class: 'make-post' do %>
+      <%= link_to "Make New Event", new_event_path, class: "sign-up-devise"%>
+     <%end%>
      <%= content_tag :div, clasS: 'login-div' do %>
      <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "log-in-btn"%>
      <%=button_to image_tag("logout.svg", class:"login-icon"), destroy_user_session_path, method: :delete, class: "login-btn-img"%>

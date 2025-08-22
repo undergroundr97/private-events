@@ -10,7 +10,7 @@
             <% event.each do |eve|%>
             <%=link_to eve do%>
             <%next if eve.privacy?%>
-            <%=content_tag :div, "#{eve.title}", class:"event-name-disp"%>
+            <%=content_tag :div, "#{eve.title}", class:"log-in-btn-devise"%>
             <%end%>
             <%end%>
         <%end%>
